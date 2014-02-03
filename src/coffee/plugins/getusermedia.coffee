@@ -32,6 +32,20 @@ class Camera
 
     $('#threshold').click =>
       @runFilter @filter.threshold, 128
+
+    $('#sharpen').click =>
+      @runFilter @filter.convolute, [  
+        0, -1,  0,
+        -1,  5, -1,
+        0, -1,  0 
+      ]
+
+    $('#edges').click =>
+      @runFilter @filter.convolute, [  
+        -1, -1,  -1,
+        -1,  8, -1,
+        -1, -1,  -1 
+      ]
       
   start: (sourceInfos) =>
     videoSource = _.find sourceInfos, {'kind' : 'video'}
