@@ -29,6 +29,9 @@ class Camera
 
     $('#brightness').click =>
       @runFilter @filter.brightness, 40
+
+    $('#threshold').click =>
+      @runFilter @filter.threshold, 128
       
   start: (sourceInfos) =>
     videoSource = _.find sourceInfos, {'kind' : 'video'}

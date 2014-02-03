@@ -43,3 +43,16 @@ class Filter
       d[i + 2] += adjustment
       i += 4
     pixels
+
+  threshold : (pixels, threshold) ->
+    d = pixels.data
+    i = 0
+
+    while i < d.length
+      r = d[i]
+      g = d[i + 1]
+      b = d[i + 2]
+      v = (if (0.2126 * r + 0.7152 * g + 0.0722 * b >= threshold) then 255 else 0)
+      d[i] = d[i + 1] = d[i + 2] = v
+      i += 4
+    pixels
