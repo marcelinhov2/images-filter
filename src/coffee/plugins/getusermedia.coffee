@@ -26,6 +26,9 @@ class Camera
 
     $('#grayscale').click =>
       @runFilter @filter.grayscale
+
+    $('#brightness').click =>
+      @runFilter @filter.brightness, 40
       
   start: (sourceInfos) =>
     videoSource = _.find sourceInfos, {'kind' : 'video'}
@@ -55,8 +58,11 @@ class Camera
   errorCallback : (error) =>
     console.log "navigator.getUserMedia error: ", error
 
-  runFilter: (filter) ->
-    pixels = @filter.filterImage(filter, @context)
+  runFilter: (filter, params) ->
+    if params
+      pixels = @filter.filterImage(filter, @context, params)
+    else
+      pixels = @filter.filterImage(filter, @context)
 
     @context.putImageData(pixels, 0, 0);
 

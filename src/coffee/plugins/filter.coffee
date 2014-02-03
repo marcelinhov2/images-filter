@@ -32,3 +32,14 @@ class Filter
       i += 4
 
     pixels
+
+  brightness : (pixels, adjustment) ->
+    d = pixels.data
+    i = 0
+
+    while i < d.length
+      d[i] += adjustment
+      d[i + 1] += adjustment
+      d[i + 2] += adjustment
+      i += 4
+    pixels
